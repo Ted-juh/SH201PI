@@ -18,13 +18,8 @@ public:
 
     ValueSlider(const juce::String& slidName)   :   sliderName(slidName)
     {
-        setName(sliderName);
-        const juce::String name = getName();
-
-
         //  This is the round slider
         addAndMakeVisible(vSlider);
-        vSlider.setName(sliderName);
 
         //  This is the minimum value slider
         addAndMakeVisible(minValBox);
@@ -46,8 +41,17 @@ public:
         vSlider.setBounds(0, 0, getWidth(), getWidth());
        minValBox.setBounds(getWidth() * 0.0625, getWidth() * 0.7875, getWidth() * 0.375, getWidth() * 0.2125);
        maxValBox.setBounds(getWidth() * 0.5625, getWidth() * 0.7875, getWidth() * 0.375, getWidth() * 0.2125);
-       
-    }
+     }
+
+    void paintOverChildren(juce::Graphics& g)
+    {
+        juce::Font normFont("CobaltItalien", 10.0f, juce::Font::plain);
+
+        g.setColour(CustomColours::white);
+        g.setFont(normFont);
+        g.setFont(12.0f);
+        g.drawText(sliderName, 0, getHeight() / 2.7f, getWidth(), getHeight() / 6.0f, juce::Justification::centred, false);
+     }
 
     void sliderValueChanged(juce::Slider* slider) override
     {
@@ -72,7 +76,6 @@ public:
             repaint();
         }
 
-
         // set end Angle by dragging the maximum valuebox
         if (slider == &maxValBox)
         {
@@ -83,7 +86,7 @@ public:
         }
     }
 
-    auto slidName() const  -> const juce::String& { return sliderName; }
+//    auto slidName() const  -> const juce::String& { return sliderName; }
             
 private:
 
