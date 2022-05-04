@@ -29,8 +29,7 @@ private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
    
-    ValueSlider         valueSlider{"Detune"};
-
+    ValueSlider         valueSlider{ "Detune" };
     //std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> detuneSliderAttachment;
 
     // this isn't creating an audioProcessor, this is just pointing to the piece of memory that holds the audioProcessor
