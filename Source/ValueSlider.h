@@ -25,13 +25,13 @@ public:
         addAndMakeVisible(minValBox);
         minValBox.setRange(0, 122, 1);
         minValBox.setValue(0);
-        //minValBox.addListener(this);
+        minValBox.addListener(this);
 
         // This is the maximum value slider
         addAndMakeVisible(maxValBox);
         maxValBox.setRange(5, 127, 1);
         maxValBox.setValue(127);
-        //maxValBox.addListener(this);
+        maxValBox.addListener(this);
     }
     
     ~ValueSlider() {}
@@ -45,6 +45,9 @@ public:
 
     void paintOverChildren(juce::Graphics& g)
     {
+        // need to use paintOverChildren because the parentComponent is the one on the bottom.. 
+        // every childcomponent gets added on top. So to display text from the parent on top.. use paintoverchildren.
+
         juce::Font normFont("CobaltItalien", 10.0f, juce::Font::plain);
 
         g.setColour(CustomColours::white);
@@ -61,18 +64,18 @@ public:
         float start = juce::MathConstants<float>::pi * 1.2f;
         float end = juce::MathConstants<float>::pi * 2.8f;
 
-        float diff = end - start;
-        float diff1 = diff / 127;
+        float diff = (end - start) / 127;
 
-        float newStart = start + (diff1 * minValBox.getValue());
-        float newEnd =  start + (diff1 * maxValBox.getValue());
+        float newStart = start + (diff * minValBox.getValue());
+        float newEnd =  start + (diff * maxValBox.getValue());
 
         // set start Angle by dragging the minimum valuebox
         if (slider == &minValBox)
         {
+            
+
             vSlider.setRotaryParameters(newStart, newEnd, true);
             vSlider.setRange(minValBox.getValue(), maxValBox.getValue(), true);
-
             repaint();
         }
 
@@ -81,17 +84,13 @@ public:
         {
             vSlider.setRotaryParameters(newStart, newEnd, true);
             vSlider.setRange(minValBox.getValue(), maxValBox.getValue(), true);
-
             repaint();
         }
     }
-
-//    auto slidName() const  -> const juce::String& { return sliderName; }
             
 private:
 
     const juce::String    sliderName;
-
     NormalSlider    vSlider;
     ValueBox        minValBox;
     ValueBox        maxValBox;

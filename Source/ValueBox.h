@@ -75,11 +75,9 @@ public:
         return l;
     }
 
-
 private:
 
     bool isEntered = false;
-    //ValueBoxLF valueBoxLF;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ValueBox)
 };

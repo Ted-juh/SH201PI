@@ -98,17 +98,7 @@ public:
             g.setColour(CustomColours::red);
             g.fillPath(juce::Path(valPointer), juce::AffineTransform::rotation(toAngle).translated(buttonCentreX, buttonCentreY));
 
-            // set name of the slider, takes name of component which is taken from the name that is given by doing "addAndMakeVisible" in the MainComponent.cpp.
-            juce::Font normFont("CobaltItalien", 10.0f, juce::Font::plain);
-
-            const juce::String slName = getName();
-            
-            g.setColour(CustomColours::white); 
-            g.setFont(normFont);
-            g.setFont(12.0f);
-            g.drawText(slName, 0, buttonHeight / 2.7f, width, buttonHeight / 6.0f, juce::Justification::centred, false);
-            //g.drawText(name, 0, buttonHeight / 2.7f, width, buttonHeight / 6.0f, juce::Justification::centred, false);
-
+            // DrawText to display slidername is handled in "ValueSlider //
         }
 
     juce::Label* createSliderTextBox(juce::Slider & slider)
@@ -126,7 +116,6 @@ public:
         }
     
 private:
-    //ValueSlider valSlider;
-
-    //JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(NormalSliderLF)
+    
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(NormalSliderLF)
 };
